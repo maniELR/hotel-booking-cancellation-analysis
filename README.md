@@ -1,270 +1,223 @@
-{
- "cells": [
-  {
-   "cell_type": "markdown",
-   "id": "c9387636-c691-4031-9df9-009647280e41",
-   "metadata": {},
-   "source": [
-    "# Hotel Booking Cancellation Analysis\n",
-    "\n",
-    "## 1. Project Overview\n",
-    "\n",
-    "This project analyzes hotel booking data to identify cancellation\n",
-    "patterns, booking behavior, and revenue impact.\n",
-    "\n",
-    "## 2. Dataset\n",
-    "\n",
-    "- Dataset: Hotel Booking Demand\n",
-    "- Total Records: 119,390\n",
-    "- Analysis focus: cancellations, lead time, deposit type,\n",
-    "  market segment, ADR, and revenue.\n",
-    "\n",
-    "## 3. Tools & Technologies\n",
-    "\n",
-    "- Python\n",
-    "- Pandas\n",
-    "- NumPy\n",
-    "- Matplotlib\n",
-    "- Jupyter Notebook\n",
-    "- LLM\n",
-    "\n",
-    "## 4. Part A — Cleaning Rules, Row Counts and Checks\n",
-    "\n",
-    "The Hotel Booking Demand dataset was loaded using Pandas from the\n",
-    "provided dataset source.\n",
-    "\n",
-    "### Data Preparation\n",
-    "\n",
-    "The following derived fields and quality flags were created:\n",
-    "\n",
-    "- `arrival_date`\n",
-    "- `total_nights`\n",
-    "- `total_guests`\n",
-    "- `flag_zero_guests`\n",
-    "- `flag_missing_country`\n",
-    "- `flag_missing_children`\n",
-    "- `flag_bad_adr`\n",
-    "\n",
-    "### Row Counts\n",
-    "\n",
-    "| Check | Result |\n",
-    "|---|---:|\n",
-    "| Total rows | 119,390 |\n",
-    "| Flagged rows | 1,829 |\n",
-    "| Clean rows | 117,561 |\n",
-    "| Row-count validation | True |\n",
-    "\n",
-    "### Validation Checks\n",
-    "\n",
-    "The reservation status was cross-checked against `is_canceled`.\n",
-    "\n",
-    "| Reservation Status | Count |\n",
-    "|---|---:|\n",
-    "| Canceled | 43,017 |\n",
-    "| Check-Out | 75,166 |\n",
-    "| No-Show | 1,207 |\n",
-    "\n",
-    "The arrival date range was validated from **2015-07-01** to\n",
-    "**2017-08-31**.\n",
-    "\n",
-    "All arrival years were validated against 2015, 2016, and 2017,\n",
-    "with the validation result **True**.\n",
-    "\n",
-    "## 5. Part B — Key Numbers and Charts\n",
-    "\n",
-    "The analysis examined cancellation rates across hotel type, month,\n",
-    "lead-time bands, deposit type, and market segment, along with revenue\n",
-    "kept and revenue lost.\n",
-    "\n",
-    "### Hotel Type\n",
-    "\n",
-    "| Hotel | Cancellation Rate |\n",
-    "|---|---:|\n",
-    "| City Hotel | 41.73% |\n",
-    "| Resort Hotel | 27.76% |\n",
-    "\n",
-    "### Month-wise Cancellation\n",
-    "\n",
-    "| Month | Cancellation Rate |\n",
-    "|---|---:|\n",
-    "| April | 40.80% |\n",
-    "| August | 37.75% |\n",
-    "| December | 34.97% |\n",
-    "| February | 33.42% |\n",
-    "| January | 30.48% |\n",
-    "| July | 37.45% |\n",
-    "| June | 41.46% |\n",
-    "| March | 32.15% |\n",
-    "| May | 39.67% |\n",
-    "| November | 31.23% |\n",
-    "| October | 38.05% |\n",
-    "| September | 39.17% |\n",
-    "\n",
-    "### Lead-time Cancellation\n",
-    "\n",
-    "| Lead-time Band | Cancellation Rate |\n",
-    "|---|---:|\n",
-    "| 0-30 | 18.56% |\n",
-    "| 31-90 | 37.70% |\n",
-    "| 91-180 | 44.71% |\n",
-    "| 181-365 | 55.45% |\n",
-    "| 365+ | 67.66% |\n",
-    "\n",
-    "### Deposit Type\n",
-    "\n",
-    "| Deposit Type | Cancellation Rate |\n",
-    "|---|---:|\n",
-    "| No Deposit | 28.38% |\n",
-    "| Non Refund | 99.36% |\n",
-    "| Refundable | 22.22% |\n",
-    "\n",
-    "### Market Segment\n",
-    "\n",
-    "| Market Segment | Cancellation Rate |\n",
-    "|---|---:|\n",
-    "| Aviation | 21.94% |\n",
-    "| Complementary | 13.06% |\n",
-    "| Corporate | 18.73% |\n",
-    "| Direct | 15.34% |\n",
-    "| Groups | 61.06% |\n",
-    "| Offline TA/TO | 34.32% |\n",
-    "| Online TA | 36.72% |\n",
-    "| Undefined | 100.00% |\n",
-    "\n",
-    "### Revenue\n",
-    "\n",
-    "| Revenue Type | Amount |\n",
-    "|---|---:|\n",
-    "| Kept | 25,996,260.41 |\n",
-    "| Lost | 16,727,237.12 |\n",
-    "\n",
-    "### Charts\n",
-    "\n",
-    "The notebook includes visualizations for hotel type, month-wise\n",
-    "cancellation, lead-time bands, deposit type, market segment, and\n",
-    "revenue kept versus revenue lost.\n",
-    "\n",
-    "## 6. Part C — AI-Assisted Analysis\n",
-    "\n",
-    "A structured summary table was provided to an LLM to generate a\n",
-    "150-word weekly revenue briefing.\n",
-    "\n",
-    "### Initial LLM Briefing\n",
-    "\n",
-    "The initial briefing was checked against the summary table for\n",
-    "numerical accuracy and unsupported factual claims.\n",
-    "\n",
-    "### Verification\n",
-    "\n",
-    "| Test | Correct | Wrong | Invented / Unsupported |\n",
-    "|---|---:|---:|---:|\n",
-    "| Initial LLM Output | 7 | 0 | 2 |\n",
-    "\n",
-    "### Improved Prompt\n",
-    "\n",
-    "The prompt was improved by requiring the LLM to:\n",
-    "\n",
-    "- Use only the provided summary table\n",
-    "- Match every number exactly\n",
-    "- Avoid unsupported claims\n",
-    "- Avoid outside knowledge\n",
-    "- Avoid inventing facts or trends\n",
-    "- Use only information supported by the table\n",
-    "\n",
-    "### Retest Result\n",
-    "\n",
-    "| Test | Correct | Wrong | Invented / Unsupported |\n",
-    "|---|---:|---:|---:|\n",
-    "| Improved LLM Output | 10 | 0 | 0 |\n",
-    "\n",
-    "The improved prompt produced a fully verified result with no\n",
-    "invented or unsupported claims.\n",
-    "\n",
-    "## 7. Key Findings\n",
-    "\n",
-    "- Overall cancellation rate: **37.04%**\n",
-    "- City Hotel cancellation rate: **41.73%**\n",
-    "- Resort Hotel cancellation rate: **27.76%**\n",
-    "- Highest cancellation month: **June — 41.46%**\n",
-    "- Lowest cancellation month: **January — 30.48%**\n",
-    "- Highest lead-time cancellation: **365+ days — 67.66%**\n",
-    "- Lowest lead-time cancellation: **0-30 days — 18.56%**\n",
-    "- Non Refund cancellation: **99.36%**\n",
-    "- Groups cancellation: **61.06%**\n",
-    "- Online TA cancellation: **36.72%**\n",
-    "- Corporate cancellation: **18.73%**\n",
-    "- Revenue kept: **25,996,260.41**\n",
-    "- Revenue lost: **16,727,237.12**\n",
-    "## 8. Limitations and What I Would Do Next\n",
-    "\n",
-    "### Limitations\n",
-    "\n",
-    "- The analysis is based on the available hotel booking dataset and\n",
-    "  summary-level findings.\n",
-    "- The analysis identifies cancellation patterns but does not establish\n",
-    "  causal relationships.\n",
-    "- The LLM analysis was restricted to the prepared summary table and\n",
-    "  therefore depends on the quality of that summary.\n",
-    "\n",
-    "### What I Would Do Next\n",
-    "\n",
-    "- Monitor cancellation patterns regularly using updated booking data.\n",
-    "- Compare cancellation patterns across future booking periods.\n",
-    "- Re-test the AI-assisted briefing when the summary table is updated.\n",
-    "- Continue validating LLM-generated numbers and factual claims against\n",
-    "  the source analysis.\n",
-    "## 9. How I Used AI Tools\n",
-    "\n",
-    "AI tools were used to support the analysis and documentation process.\n",
-    "\n",
-    "The main AI-assisted workflow was:\n",
-    "\n",
-    "1. A summary table was prepared from the analysis.\n",
-    "2. The summary table was provided to an LLM.\n",
-    "3. The LLM generated an initial weekly revenue briefing.\n",
-    "4. The generated briefing was manually checked against the summary table.\n",
-    "5. Unsupported claims were identified and recorded.\n",
-    "6. The prompt was improved with stricter verification rules.\n",
-    "7. The same summary table was used for a second LLM test.\n",
-    "8. The improved output was verified again.\n",
-    "\n",
-    "AI was used for assisted interpretation and prompt testing.\n",
-    "The underlying data analysis, calculations, validation, and business\n",
-    "## 10. Conclusion\n",
-    "\n",
-    "The analysis identifies key cancellation patterns and revenue impact.\n",
-    "The AI-assisted analysis also demonstrates that stricter prompt rules\n",
-    "can reduce unsupported claims in LLM-generated business briefings."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "7ae93e0f-03fe-4b63-87d0-6894ef0a7474",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.12.10"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+# Hotel Booking Cancellation Analysis
+
+## 1. Project Overview
+
+This project analyzes hotel booking data to identify cancellation patterns, booking behavior, and revenue impact.
+
+## 2. Dataset
+
+* **Dataset:** Hotel Booking Demand
+* **Total Records:** 119,390
+* **Analysis Focus:** Cancellations, lead time, deposit type, market segment, ADR, and revenue.
+
+## 3. Tools & Technologies
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Jupyter Notebook
+* LLM
+
+## 4. Part A — Cleaning Rules, Row Counts and Checks
+
+The Hotel Booking Demand dataset was loaded using Pandas from the provided dataset source.
+
+### Data Preparation
+
+The following derived fields and quality flags were created:
+
+* `arrival_date`
+* `total_nights`
+* `total_guests`
+* `flag_zero_guests`
+* `flag_missing_country`
+* `flag_missing_children`
+* `flag_bad_adr`
+
+### Row Counts
+
+| Check                |  Result |
+| -------------------- | ------: |
+| Total rows           | 119,390 |
+| Flagged rows         |   1,829 |
+| Clean rows           | 117,561 |
+| Row-count validation |    True |
+
+### Validation Checks
+
+The reservation status was cross-checked against `is_canceled`.
+
+| Reservation Status |  Count |
+| ------------------ | -----: |
+| Canceled           | 43,017 |
+| Check-Out          | 75,166 |
+| No-Show            |  1,207 |
+
+The arrival date range was validated from **2015-07-01** to **2017-08-31**.
+
+All arrival years were validated against 2015, 2016, and 2017, with the validation result **True**.
+
+## 5. Part B — Key Numbers and Charts
+
+The analysis examined cancellation rates across hotel type, month, lead-time bands, deposit type, and market segment, along with revenue kept and revenue lost.
+
+### Hotel Type
+
+| Hotel        | Cancellation Rate |
+| ------------ | ----------------: |
+| City Hotel   |            41.73% |
+| Resort Hotel |            27.76% |
+
+### Month-wise Cancellation
+
+| Month     | Cancellation Rate |
+| --------- | ----------------: |
+| April     |            40.80% |
+| August    |            37.75% |
+| December  |            34.97% |
+| February  |            33.42% |
+| January   |            30.48% |
+| July      |            37.45% |
+| June      |            41.46% |
+| March     |            32.15% |
+| May       |            39.67% |
+| November  |            31.23% |
+| October   |            38.05% |
+| September |            39.17% |
+
+### Lead-time Cancellation
+
+| Lead-time Band | Cancellation Rate |
+| -------------- | ----------------: |
+| 0-30           |            18.56% |
+| 31-90          |            37.70% |
+| 91-180         |            44.71% |
+| 181-365        |            55.45% |
+| 365+           |            67.66% |
+
+### Deposit Type
+
+| Deposit Type | Cancellation Rate |
+| ------------ | ----------------: |
+| No Deposit   |            28.38% |
+| Non Refund   |            99.36% |
+| Refundable   |            22.22% |
+
+### Market Segment
+
+| Market Segment | Cancellation Rate |
+| -------------- | ----------------: |
+| Aviation       |            21.94% |
+| Complementary  |            13.06% |
+| Corporate      |            18.73% |
+| Direct         |            15.34% |
+| Groups         |            61.06% |
+| Offline TA/TO  |            34.32% |
+| Online TA      |            36.72% |
+| Undefined      |           100.00% |
+
+### Revenue
+
+| Revenue Type |        Amount |
+| ------------ | ------------: |
+| Kept         | 25,996,260.41 |
+| Lost         | 16,727,237.12 |
+
+### Charts
+
+The notebook includes visualizations for:
+
+* Hotel type cancellation
+* Month-wise cancellation
+* Lead-time cancellation bands
+* Deposit type cancellation
+* Market segment cancellation
+* Revenue kept versus revenue lost
+
+## 6. Part C — AI-Assisted Analysis
+
+A structured summary table was provided to an LLM to generate a 150-word weekly revenue briefing.
+
+### Initial LLM Briefing
+
+The initial briefing was checked against the summary table for numerical accuracy and unsupported factual claims.
+
+### Verification
+
+| Test               | Correct | Wrong | Invented / Unsupported |
+| ------------------ | ------: | ----: | ---------------------: |
+| Initial LLM Output |       7 |     0 |                      2 |
+
+### Improved Prompt
+
+The prompt was improved by requiring the LLM to:
+
+* Use only the provided summary table
+* Match every number exactly
+* Avoid unsupported claims
+* Avoid outside knowledge
+* Avoid inventing facts or trends
+* Use only information supported by the table
+
+### Retest Result
+
+| Test                | Correct | Wrong | Invented / Unsupported |
+| ------------------- | ------: | ----: | ---------------------: |
+| Improved LLM Output |      10 |     0 |                      0 |
+
+The improved prompt produced a fully verified result with no invented or unsupported claims.
+
+## 7. Key Findings
+
+* **Overall cancellation rate:** 37.04%
+* **City Hotel cancellation rate:** 41.73%
+* **Resort Hotel cancellation rate:** 27.76%
+* **Highest cancellation month:** June — 41.46%
+* **Lowest cancellation month:** January — 30.48%
+* **Highest lead-time cancellation:** 365+ days — 67.66%
+* **Lowest lead-time cancellation:** 0-30 days — 18.56%
+* **Non Refund cancellation:** 99.36%
+* **Groups cancellation:** 61.06%
+* **Online TA cancellation:** 36.72%
+* **Corporate cancellation:** 18.73%
+* **Revenue kept:** 25,996,260.41
+* **Revenue lost:** 16,727,237.12
+
+## 8. Limitations and What I Would Do Next
+
+### Limitations
+
+* The analysis is based on the available hotel booking dataset and summary-level findings.
+* The analysis identifies cancellation patterns but does not establish causal relationships.
+* The LLM analysis was restricted to the prepared summary table and therefore depends on the quality of that summary.
+
+### What I Would Do Next
+
+* Monitor cancellation patterns regularly using updated booking data.
+* Compare cancellation patterns across future booking periods.
+* Re-test the AI-assisted briefing when the summary table is updated.
+* Continue validating LLM-generated numbers and factual claims against the source analysis.
+
+## 9. How I Used AI Tools
+
+AI tools were used to support the analysis and documentation process.
+
+The main AI-assisted workflow was:
+
+1. A summary table was prepared from the analysis.
+2. The summary table was provided to an LLM.
+3. The LLM generated an initial weekly revenue briefing.
+4. The generated briefing was manually checked against the summary table.
+5. Unsupported claims were identified and recorded.
+6. The prompt was improved with stricter verification rules.
+7. The same summary table was used for a second LLM test.
+8. The improved output was verified again.
+
+AI was used for assisted interpretation and prompt testing. The underlying data analysis, calculations, validation, and business findings were performed using the analysis workflow.
+
+## 10. Conclusion
+
+The analysis identifies key cancellation patterns and revenue impact.
+
+The AI-assisted analysis also demonstrates that stricter prompt rules can reduce unsupported claims in LLM-generated business briefings.
